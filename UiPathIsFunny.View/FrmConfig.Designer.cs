@@ -103,7 +103,8 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmConfig";
-            this.Text = "FrmConfig";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Config";
             this.ResumeLayout(false);
             this.PerformLayout();
 

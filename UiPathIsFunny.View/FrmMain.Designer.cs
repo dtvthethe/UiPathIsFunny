@@ -222,7 +222,7 @@
             // 
             this.lsvStatus.FullRowSelect = true;
             this.lsvStatus.GridLines = true;
-            this.lsvStatus.Location = new System.Drawing.Point(16, 138);
+            this.lsvStatus.Location = new System.Drawing.Point(8, 165);
             this.lsvStatus.MultiSelect = false;
             this.lsvStatus.Name = "lsvStatus";
             this.lsvStatus.Size = new System.Drawing.Size(793, 191);
@@ -285,6 +285,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(839, 410);
             this.Controls.Add(this.tabControl1);
             this.Name = "FrmMain";
