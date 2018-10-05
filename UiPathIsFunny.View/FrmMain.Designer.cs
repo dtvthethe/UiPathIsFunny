@@ -30,6 +30,7 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnSave = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.lsvConfig = new System.Windows.Forms.ListView();
             this.btnRemove = new System.Windows.Forms.Button();
@@ -38,13 +39,11 @@
             this.txtConfigTag = new System.Windows.Forms.TextBox();
             this.btnBrowConfig = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnStart = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnFolderXAML = new System.Windows.Forms.Button();
             this.lsvStatus = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label2 = new System.Windows.Forms.Label();
             this.txtExportTo = new System.Windows.Forms.TextBox();
             this.btnBrowser = new System.Windows.Forms.Button();
@@ -63,11 +62,12 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(833, 493);
+            this.tabControl1.Size = new System.Drawing.Size(833, 409);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.btnSave);
             this.tabPage1.Controls.Add(this.btnEdit);
             this.tabPage1.Controls.Add(this.lsvConfig);
             this.tabPage1.Controls.Add(this.btnRemove);
@@ -78,10 +78,20 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(825, 467);
+            this.tabPage1.Size = new System.Drawing.Size(825, 383);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Config";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(544, 46);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.TabIndex = 26;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnEdit
             // 
@@ -98,8 +108,9 @@
             this.lsvConfig.FullRowSelect = true;
             this.lsvConfig.GridLines = true;
             this.lsvConfig.Location = new System.Drawing.Point(15, 83);
+            this.lsvConfig.MultiSelect = false;
             this.lsvConfig.Name = "lsvConfig";
-            this.lsvConfig.Size = new System.Drawing.Size(793, 191);
+            this.lsvConfig.Size = new System.Drawing.Size(793, 284);
             this.lsvConfig.TabIndex = 24;
             this.lsvConfig.UseCompatibleStateImageBehavior = false;
             this.lsvConfig.View = System.Windows.Forms.View.Details;
@@ -137,6 +148,7 @@
             // 
             this.txtConfigTag.Location = new System.Drawing.Point(87, 17);
             this.txtConfigTag.Name = "txtConfigTag";
+            this.txtConfigTag.ReadOnly = true;
             this.txtConfigTag.Size = new System.Drawing.Size(300, 20);
             this.txtConfigTag.TabIndex = 20;
             // 
@@ -152,7 +164,7 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.button1);
+            this.tabPage2.Controls.Add(this.btnStart);
             this.tabPage2.Controls.Add(this.label3);
             this.tabPage2.Controls.Add(this.textBox1);
             this.tabPage2.Controls.Add(this.btnFolderXAML);
@@ -166,19 +178,20 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(825, 467);
+            this.tabPage2.Size = new System.Drawing.Size(825, 383);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Make it Funny";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // btnStart
             // 
-            this.button1.Location = new System.Drawing.Point(359, 75);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 35;
-            this.button1.Text = "Start";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnStart.Location = new System.Drawing.Point(359, 75);
+            this.btnStart.Name = "btnStart";
+            this.btnStart.Size = new System.Drawing.Size(75, 23);
+            this.btnStart.TabIndex = 35;
+            this.btnStart.Text = "Start";
+            this.btnStart.UseVisualStyleBackColor = true;
+            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
             // label3
             // 
@@ -207,25 +220,15 @@
             // 
             // lsvStatus
             // 
-            this.lsvStatus.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader3});
             this.lsvStatus.FullRowSelect = true;
             this.lsvStatus.GridLines = true;
             this.lsvStatus.Location = new System.Drawing.Point(16, 138);
+            this.lsvStatus.MultiSelect = false;
             this.lsvStatus.Name = "lsvStatus";
             this.lsvStatus.Size = new System.Drawing.Size(793, 191);
             this.lsvStatus.TabIndex = 31;
             this.lsvStatus.UseCompatibleStateImageBehavior = false;
-            this.lsvStatus.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Width = 152;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Width = 210;
+            this.lsvStatus.View = System.Windows.Forms.View.List;
             // 
             // label2
             // 
@@ -282,7 +285,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(839, 488);
+            this.ClientSize = new System.Drawing.Size(839, 410);
             this.Controls.Add(this.tabControl1);
             this.Name = "FrmMain";
             this.Text = "UiPath is Funny!";
@@ -316,9 +319,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button btnFolderXAML;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.Button btnStart;
+        private System.Windows.Forms.Button btnSave;
     }
 }
 

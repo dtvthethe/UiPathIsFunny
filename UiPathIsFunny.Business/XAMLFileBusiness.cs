@@ -15,7 +15,7 @@ namespace UiPathIsFunny.Business
                 var text = fr.ReadToEnd();
                 lstActivities.ForEach(_ =>
                 {
-                    if (string.IsNullOrEmpty(_.KeyWord.Trim()) || _.KeyWord.Trim().Length <= 2)
+                    if (string.IsNullOrEmpty(_.Keyword.Trim()) || _.Keyword.Trim().Length <= 2)
                     {
                         _.Problem = "OOps..! This Keyword is invalid, Please fix to correct!";
                         _.Count = 0;
@@ -23,7 +23,7 @@ namespace UiPathIsFunny.Business
                     else
                     {
                         _.Problem = "";
-                        _.Count = Regex.Matches(text, _.KeyWord).Count;
+                        _.Count = Regex.Matches(text, _.Keyword).Count;
                     }
                 });
             }

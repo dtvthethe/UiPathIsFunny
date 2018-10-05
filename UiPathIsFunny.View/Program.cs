@@ -1,8 +1,11 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UiPathIsFunny.Model;
+using UiPathIsFunny.View.Model;
 
 namespace UiPathIsFunny.View
 {
@@ -14,9 +17,17 @@ namespace UiPathIsFunny.View
         [STAThread]
         static void Main()
         {
+            Mapper.Initialize(cfg =>
+            {
+                cfg.CreateMap<ConfigViewModel, Config>();
+                cfg.CreateMap<Config, ConfigViewModel>();
+            });
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FrmMain());
+
+            
         }
     }
 }

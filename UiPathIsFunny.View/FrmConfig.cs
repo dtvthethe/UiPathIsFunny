@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,20 +15,43 @@ namespace UiPathIsFunny.View
 {
     public partial class FrmConfig : Form
     {
-        private Config config;
+        public ConfigViewModel configViewModel { get; set; }
 
         public FrmConfig(ConfigViewModel cf)
         {
             InitializeComponent();
+
+            Init(cf);
+        }
+
+        private void Init(ConfigViewModel cf) {
+            configViewModel = new ConfigViewModel();
+
+            if (cf != null)
+            {
+                configViewModel = cf;
+                txtName.Text = configViewModel.Name;
+                txtKeyword.Text = configViewModel.Keyword;
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            FrmMain.configView = new ConfigViewModel
+            configViewModel = new ConfigViewModel
             {
-                Name = "AA",
-                Keyword = "AAAAAA"
+                Name = txtName.Text,
+                Keyword = txtKeyword.Text
             };
+            DialogResult = DialogResult.OK;
+
+            this.Close();
+
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            configViewModel = null;
+            DialogResult = DialogResult.Cancel;
             this.Close();
         }
     }

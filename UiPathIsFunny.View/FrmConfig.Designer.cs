@@ -29,10 +29,11 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtName = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtKeyword = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -44,12 +45,12 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Name";
             // 
-            // textBox1
+            // txtName
             // 
-            this.textBox1.Location = new System.Drawing.Point(157, 38);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 1;
+            this.txtName.Location = new System.Drawing.Point(157, 38);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(100, 20);
+            this.txtName.TabIndex = 1;
             // 
             // btnSave
             // 
@@ -61,12 +62,12 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // textBox2
+            // txtKeyword
             // 
-            this.textBox2.Location = new System.Drawing.Point(212, 83);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 4;
+            this.txtKeyword.Location = new System.Drawing.Point(212, 83);
+            this.txtKeyword.Name = "txtKeyword";
+            this.txtKeyword.Size = new System.Drawing.Size(100, 20);
+            this.txtKeyword.TabIndex = 4;
             // 
             // label2
             // 
@@ -77,16 +78,30 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Keyword";
             // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(305, 136);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 5;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
             // FrmConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(425, 187);
-            this.Controls.Add(this.textBox2);
+            this.ControlBox = false;
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.txtKeyword);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtName);
             this.Controls.Add(this.label1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmConfig";
             this.Text = "FrmConfig";
             this.ResumeLayout(false);
@@ -97,9 +112,10 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtKeyword;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnCancel;
     }
 }

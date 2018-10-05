@@ -24,7 +24,7 @@ namespace UiPathIsFunny.Business
                         lstConfig.Add(new Config
                         {
                             Name = arrLine[0],
-                            KeyWord = arrLine[1]
+                            Keyword = arrLine[1]
                         });
                     }
                     else
@@ -40,6 +40,17 @@ namespace UiPathIsFunny.Business
                     return lstConfig;
             }
 
+        }
+
+        public void SaveAll(List<Config> configs, string pathFile)
+        {
+            using (var fw = new StreamWriter(pathFile))
+            {
+                configs.ForEach(_ =>
+                {
+                    fw.WriteLine(_.Name.Trim() + "," + _.Keyword);
+                });
+            };
         }
 
     }
