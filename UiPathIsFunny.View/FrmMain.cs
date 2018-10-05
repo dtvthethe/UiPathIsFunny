@@ -15,15 +15,18 @@ namespace UiPathIsFunny.View
 {
     public partial class FrmMain : Form
     {
+
+        private List<Config> lstConfig;
+        public static ConfigViewModel configView { get; set; }
+
         public FrmMain()
         {
             InitializeComponent();
-
-            lsvConfig.Columns.Add("Name", lsvConfig.Width/2);
+            lstConfig = new List<Config>();
+            lsvConfig.Columns.Add("Name", lsvConfig.Width / 2);
             lsvConfig.Columns.Add("Keyword", lsvConfig.Width / 2);
         }
-        private List<Config> lstConfig;
-        public static Config configView { get; set; }
+
 
         private void btnBrowConfig_Click(object sender, EventArgs e)
         {
@@ -51,7 +54,8 @@ namespace UiPathIsFunny.View
 
                     lstConfig = cf.Import(openFileDialogConfigPath.FileName);
 
-                    lstConfig.ForEach(_ => {
+                    lstConfig.ForEach(_ =>
+                    {
                         var item = new ListViewItem(_.Name);
                         item.SubItems.Add(_.KeyWord);
                         lsvConfig.Items.Add(item);
@@ -71,7 +75,8 @@ namespace UiPathIsFunny.View
             frmConfig.ShowDialog();
             lstConfig.Add(configView);
             lsvConfig.Items.Clear();
-            lstConfig.ForEach(_ => {
+            lstConfig.ForEach(_ =>
+            {
                 var item = new ListViewItem(_.Name);
                 item.SubItems.Add(_.KeyWord);
                 lsvConfig.Items.Add(item);
@@ -86,7 +91,8 @@ namespace UiPathIsFunny.View
                 lstConfig.RemoveAt(index);
             }
             lsvConfig.Items.Clear();
-            lstConfig.ForEach(_ => {
+            lstConfig.ForEach(_ =>
+            {
                 var item = new ListViewItem(_.Name);
                 item.SubItems.Add(_.KeyWord);
                 lsvConfig.Items.Add(item);

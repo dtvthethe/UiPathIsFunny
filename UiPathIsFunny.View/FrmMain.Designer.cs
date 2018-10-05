@@ -30,27 +30,27 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btnEdit = new System.Windows.Forms.Button();
+            this.lsvConfig = new System.Windows.Forms.ListView();
+            this.btnRemove = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txtConfigTag = new System.Windows.Forms.TextBox();
             this.btnBrowConfig = new System.Windows.Forms.Button();
-            this.btnExport = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
-            this.cmbExport = new System.Windows.Forms.ComboBox();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.btnRemove = new System.Windows.Forms.Button();
-            this.lsvConfig = new System.Windows.Forms.ListView();
-            this.btnEdit = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtExportTo = new System.Windows.Forms.TextBox();
-            this.btnBrowser = new System.Windows.Forms.Button();
-            this.lsvStatus = new System.Windows.Forms.ListView();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnFolderXAML = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.lsvStatus = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtExportTo = new System.Windows.Forms.TextBox();
+            this.btnBrowser = new System.Windows.Forms.Button();
+            this.btnExport = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cmbExport = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -83,6 +83,73 @@
             this.tabPage1.Text = "Config";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // btnEdit
+            // 
+            this.btnEdit.Location = new System.Drawing.Point(625, 17);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(75, 23);
+            this.btnEdit.TabIndex = 25;
+            this.btnEdit.Text = "Edit";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            // 
+            // lsvConfig
+            // 
+            this.lsvConfig.FullRowSelect = true;
+            this.lsvConfig.GridLines = true;
+            this.lsvConfig.Location = new System.Drawing.Point(15, 83);
+            this.lsvConfig.Name = "lsvConfig";
+            this.lsvConfig.Size = new System.Drawing.Size(793, 191);
+            this.lsvConfig.TabIndex = 24;
+            this.lsvConfig.UseCompatibleStateImageBehavior = false;
+            this.lsvConfig.View = System.Windows.Forms.View.Details;
+            // 
+            // btnRemove
+            // 
+            this.btnRemove.Location = new System.Drawing.Point(706, 17);
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.Size = new System.Drawing.Size(75, 23);
+            this.btnRemove.TabIndex = 23;
+            this.btnRemove.Text = "Remove";
+            this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Location = new System.Drawing.Point(544, 17);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(75, 23);
+            this.btnAdd.TabIndex = 22;
+            this.btnAdd.Text = "Add";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 17);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(63, 13);
+            this.label1.TabIndex = 21;
+            this.label1.Text = "Config tags:";
+            // 
+            // txtConfigTag
+            // 
+            this.txtConfigTag.Location = new System.Drawing.Point(87, 17);
+            this.txtConfigTag.Name = "txtConfigTag";
+            this.txtConfigTag.Size = new System.Drawing.Size(300, 20);
+            this.txtConfigTag.TabIndex = 20;
+            // 
+            // btnBrowConfig
+            // 
+            this.btnBrowConfig.Location = new System.Drawing.Point(425, 17);
+            this.btnBrowConfig.Name = "btnBrowConfig";
+            this.btnBrowConfig.Size = new System.Drawing.Size(75, 23);
+            this.btnBrowConfig.TabIndex = 19;
+            this.btnBrowConfig.Text = "Browser";
+            this.btnBrowConfig.UseVisualStyleBackColor = true;
+            this.btnBrowConfig.Click += new System.EventHandler(this.btnBrowConfig_Click);
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.button1);
@@ -104,137 +171,14 @@
             this.tabPage2.Text = "Make it Funny";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // label1
+            // button1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 17);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(63, 13);
-            this.label1.TabIndex = 21;
-            this.label1.Text = "Config tags:";
-            // 
-            // txtConfigTag
-            // 
-            this.txtConfigTag.Location = new System.Drawing.Point(87, 17);
-            this.txtConfigTag.Name = "txtConfigTag";
-            this.txtConfigTag.Size = new System.Drawing.Size(121, 20);
-            this.txtConfigTag.TabIndex = 20;
-            // 
-            // btnBrowConfig
-            // 
-            this.btnBrowConfig.Location = new System.Drawing.Point(224, 15);
-            this.btnBrowConfig.Name = "btnBrowConfig";
-            this.btnBrowConfig.Size = new System.Drawing.Size(75, 23);
-            this.btnBrowConfig.TabIndex = 19;
-            this.btnBrowConfig.Text = "Browser";
-            this.btnBrowConfig.UseVisualStyleBackColor = true;
-            this.btnBrowConfig.Click += new System.EventHandler(this.btnBrowConfig_Click);
-            // 
-            // btnExport
-            // 
-            this.btnExport.Location = new System.Drawing.Point(233, 26);
-            this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(75, 23);
-            this.btnExport.TabIndex = 27;
-            this.btnExport.Text = "Export";
-            this.btnExport.UseVisualStyleBackColor = true;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(34, 26);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(52, 13);
-            this.label6.TabIndex = 26;
-            this.label6.Text = "Export to:";
-            // 
-            // cmbExport
-            // 
-            this.cmbExport.FormattingEnabled = true;
-            this.cmbExport.Location = new System.Drawing.Point(96, 23);
-            this.cmbExport.Name = "cmbExport";
-            this.cmbExport.Size = new System.Drawing.Size(121, 21);
-            this.cmbExport.TabIndex = 25;
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Location = new System.Drawing.Point(544, 17);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 23);
-            this.btnAdd.TabIndex = 22;
-            this.btnAdd.Text = "Add";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // btnRemove
-            // 
-            this.btnRemove.Location = new System.Drawing.Point(706, 17);
-            this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(75, 23);
-            this.btnRemove.TabIndex = 23;
-            this.btnRemove.Text = "Remove";
-            this.btnRemove.UseVisualStyleBackColor = true;
-            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
-            // 
-            // lsvConfig
-            // 
-            this.lsvConfig.FullRowSelect = true;
-            this.lsvConfig.GridLines = true;
-            this.lsvConfig.Location = new System.Drawing.Point(15, 83);
-            this.lsvConfig.Name = "lsvConfig";
-            this.lsvConfig.Size = new System.Drawing.Size(793, 191);
-            this.lsvConfig.TabIndex = 24;
-            this.lsvConfig.UseCompatibleStateImageBehavior = false;
-            this.lsvConfig.View = System.Windows.Forms.View.Details;
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.Location = new System.Drawing.Point(625, 17);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(75, 23);
-            this.btnEdit.TabIndex = 25;
-            this.btnEdit.Text = "Edit";
-            this.btnEdit.UseVisualStyleBackColor = true;
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(21, 65);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(52, 13);
-            this.label2.TabIndex = 30;
-            this.label2.Text = "Export to:";
-            // 
-            // txtExportTo
-            // 
-            this.txtExportTo.Location = new System.Drawing.Point(96, 65);
-            this.txtExportTo.Name = "txtExportTo";
-            this.txtExportTo.Size = new System.Drawing.Size(121, 20);
-            this.txtExportTo.TabIndex = 29;
-            // 
-            // btnBrowser
-            // 
-            this.btnBrowser.Location = new System.Drawing.Point(233, 63);
-            this.btnBrowser.Name = "btnBrowser";
-            this.btnBrowser.Size = new System.Drawing.Size(75, 23);
-            this.btnBrowser.TabIndex = 28;
-            this.btnBrowser.Text = "Browser";
-            this.btnBrowser.UseVisualStyleBackColor = true;
-            // 
-            // lsvStatus
-            // 
-            this.lsvStatus.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader3});
-            this.lsvStatus.FullRowSelect = true;
-            this.lsvStatus.GridLines = true;
-            this.lsvStatus.Location = new System.Drawing.Point(16, 138);
-            this.lsvStatus.Name = "lsvStatus";
-            this.lsvStatus.Size = new System.Drawing.Size(793, 191);
-            this.lsvStatus.TabIndex = 31;
-            this.lsvStatus.UseCompatibleStateImageBehavior = false;
-            this.lsvStatus.View = System.Windows.Forms.View.Details;
+            this.button1.Location = new System.Drawing.Point(359, 75);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 35;
+            this.button1.Text = "Start";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
@@ -261,14 +205,19 @@
             this.btnFolderXAML.Text = "Browser";
             this.btnFolderXAML.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // lsvStatus
             // 
-            this.button1.Location = new System.Drawing.Point(359, 75);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 35;
-            this.button1.Text = "Start";
-            this.button1.UseVisualStyleBackColor = true;
+            this.lsvStatus.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader3});
+            this.lsvStatus.FullRowSelect = true;
+            this.lsvStatus.GridLines = true;
+            this.lsvStatus.Location = new System.Drawing.Point(16, 138);
+            this.lsvStatus.Name = "lsvStatus";
+            this.lsvStatus.Size = new System.Drawing.Size(793, 191);
+            this.lsvStatus.TabIndex = 31;
+            this.lsvStatus.UseCompatibleStateImageBehavior = false;
+            this.lsvStatus.View = System.Windows.Forms.View.Details;
             // 
             // columnHeader1
             // 
@@ -277,6 +226,57 @@
             // columnHeader3
             // 
             this.columnHeader3.Width = 210;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(21, 65);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(52, 13);
+            this.label2.TabIndex = 30;
+            this.label2.Text = "Export to:";
+            // 
+            // txtExportTo
+            // 
+            this.txtExportTo.Location = new System.Drawing.Point(96, 65);
+            this.txtExportTo.Name = "txtExportTo";
+            this.txtExportTo.Size = new System.Drawing.Size(121, 20);
+            this.txtExportTo.TabIndex = 29;
+            // 
+            // btnBrowser
+            // 
+            this.btnBrowser.Location = new System.Drawing.Point(233, 63);
+            this.btnBrowser.Name = "btnBrowser";
+            this.btnBrowser.Size = new System.Drawing.Size(75, 23);
+            this.btnBrowser.TabIndex = 28;
+            this.btnBrowser.Text = "Browser";
+            this.btnBrowser.UseVisualStyleBackColor = true;
+            // 
+            // btnExport
+            // 
+            this.btnExport.Location = new System.Drawing.Point(233, 26);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(75, 23);
+            this.btnExport.TabIndex = 27;
+            this.btnExport.Text = "Export";
+            this.btnExport.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(34, 26);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(52, 13);
+            this.label6.TabIndex = 26;
+            this.label6.Text = "Export to:";
+            // 
+            // cmbExport
+            // 
+            this.cmbExport.FormattingEnabled = true;
+            this.cmbExport.Location = new System.Drawing.Point(96, 23);
+            this.cmbExport.Name = "cmbExport";
+            this.cmbExport.Size = new System.Drawing.Size(121, 21);
+            this.cmbExport.TabIndex = 25;
             // 
             // FrmMain
             // 

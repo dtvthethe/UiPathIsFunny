@@ -5,7 +5,7 @@
 
         string Name { get; set; }
 
-        string KeyWord { get; set; }
+        string Keyword { get; set; }
 
     }
 }

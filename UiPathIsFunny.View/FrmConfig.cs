@@ -16,16 +16,17 @@ namespace UiPathIsFunny.View
     {
         private Config config;
 
-        public FrmConfig(Config cf)
+        public FrmConfig(ConfigViewModel cf)
         {
             InitializeComponent();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            FrmMain.configView = new Config {
+            FrmMain.configView = new ConfigViewModel
+            {
                 Name = "AA",
-                KeyWord = "AAAAAA"
+                Keyword = "AAAAAA"
             };
             this.Close();
         }

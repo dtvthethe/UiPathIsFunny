@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UiPathIsFunny.Utility", "Ui
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UiPathIsFunny.View", "UiPathIsFunny.View\UiPathIsFunny.View.csproj", "{2AA0E51A-14BA-42E2-977D-DE262B32A583}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UiPathIsFunny.Test", "UiPathIsFunny.Test\UiPathIsFunny.Test.csproj", "{62252B77-0760-44FC-B6F8-5E52D3FBD4CA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{2AA0E51A-14BA-42E2-977D-DE262B32A583}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2AA0E51A-14BA-42E2-977D-DE262B32A583}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2AA0E51A-14BA-42E2-977D-DE262B32A583}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62252B77-0760-44FC-B6F8-5E52D3FBD4CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62252B77-0760-44FC-B6F8-5E52D3FBD4CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62252B77-0760-44FC-B6F8-5E52D3FBD4CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62252B77-0760-44FC-B6F8-5E52D3FBD4CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
