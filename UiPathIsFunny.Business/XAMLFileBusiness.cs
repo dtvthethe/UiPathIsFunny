@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 using UiPathIsFunny.Model;
 
@@ -28,6 +29,38 @@ namespace UiPathIsFunny.Business
                 });
             }
             return lstActivities;
+        }
+
+        public List<Activity> CountSummatyActicities(List<ActivityReport> activities)
+        {
+            var lstActivity = new List<Activity>();
+
+            if (activities.Count == 1)
+            {
+                lstActivity = activities[0].Activities;
+            }
+            else if (activities.Count > 1)
+            {
+                lstActivity = activities[0].Activities;
+                for (int i = 1; i < activities.Count; i++)
+                {
+                    lstActivity = lstActivity.Join(activities[i].Activities, inner => inner.Name, outer => outer.Name, (inner, outer) =>
+                      new Activity
+                      {
+                          Keyword = inner.Keyword,
+                          Count = inner.Count + outer.Count,
+                          Problem = inner.Problem,
+                          Name = inner.Name
+                      }).ToList();
+                }
+
+            }
+            else
+            {
+                return lstActivity;
+            }
+
+            return lstActivity;
         }
 
     }

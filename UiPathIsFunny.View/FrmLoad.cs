@@ -58,13 +58,13 @@ namespace UiPathIsFunny.View
         private void AfterLoading(object sender, EventArgs e)
         {
             this.Activated -= AfterLoading;
-
+            XAMLFileBusiness aMLFileBusiness = new XAMLFileBusiness();
 
             // Count by keyword:
             for (int i = 0; i < files.Count(); i++)
             {
 
-                XAMLFileBusiness aMLFileBusiness = new XAMLFileBusiness();
+                
                 var lstCount = aMLFileBusiness.CountActicities(files[i], CreateListActivity(configs));
                 activityReports.Add(new ActivityReport
                 {
@@ -79,6 +79,10 @@ namespace UiPathIsFunny.View
                 {
                     Export.ToExcel(activityReports, exportPath);
                 }
+
+                var listSummary = aMLFileBusiness.CountSummatyActicities(activityReports);
+
+                Export.ToExcelSummary(listSummary.ToList(), exportPath);
 
                 MessageBox.Show("Done");
             }
