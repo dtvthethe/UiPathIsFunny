@@ -70,8 +70,11 @@
       <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\ConfigViewModel.cs" />
+    <Compile Include="Model\ExportViewModel.cs" />
+    <Compile Include="Model\Status.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Var\Enums.cs" />
     <EmbeddedResource Include="FrmConfig.resx">
       <DependentUpon>FrmConfig.cs</DependentUpon>
     </EmbeddedResource>
@@ -112,6 +115,10 @@
     <ProjectReference Include="..\UiPathIsFunny.Model\UiPathIsFunny.Model.csproj">
       <Project>{4D7B5AA3-5666-45B3-9D46-F6C5F07C4F09}</Project>
       <Name>UiPathIsFunny.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UiPathIsFunny.Utility\UiPathIsFunny.Utility.csproj">
+      <Project>{1C375B8D-DA9C-42C4-BF9F-5C5FE99C1364}</Project>
+      <Name>UiPathIsFunny.Utility</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

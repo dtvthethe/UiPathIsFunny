@@ -17,21 +17,21 @@ namespace UiPathIsFunny.View
     {
         public ConfigViewModel configViewModel { get; set; }
 
-        public FrmConfig(ConfigViewModel cf)
+        public FrmConfig(ConfigViewModel configViewModel)
         {
             InitializeComponent();
 
-            Init(cf);
+            Init(configViewModel);
         }
 
-        private void Init(ConfigViewModel cf) {
+        private void Init(ConfigViewModel configViewModel) {
             configViewModel = new ConfigViewModel();
 
-            if (cf != null)
+            if (configViewModel != null)
             {
-                configViewModel = cf;
-                txtName.Text = configViewModel.Name;
-                txtKeyword.Text = configViewModel.Keyword;
+                this.configViewModel = configViewModel;
+                txtName.Text = this.configViewModel.Name;
+                txtKeyword.Text = this.configViewModel.Keyword;
             }
         }
 

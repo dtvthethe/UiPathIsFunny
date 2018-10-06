@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using UiPathIsFunny.Business;
 using UiPathIsFunny.Model;
 using UiPathIsFunny.View.Model;
+using static UiPathIsFunny.Utility.Enums;
 
 namespace UiPathIsFunny.View
 {
@@ -21,8 +22,7 @@ namespace UiPathIsFunny.View
 
         private List<Config> lstConfig;
         private ConfigBusiness configBusiness;
-
-        //public static ConfigViewModel configView { get; set; }
+        private string[] filesProcess;
 
         public FrmMain()
         {
@@ -35,8 +35,65 @@ namespace UiPathIsFunny.View
             lsvConfig.Columns.Add("Keyword", lsvConfig.Width / 2);
 
             lsvStatus.Columns.Add("", lsvStatus.Width);
+
+
+            var lstStAppend = new List<Status>();
+            lstStAppend.Add(new Status
+            {
+                CurrentTime = DateTime.Now,
+                Message = "Please click on Browser button to import your XAML files!",
+                MsgStatus = MessageStatus.Fail
+            });
+            var lstSt = StatusList(lstStAppend);
+
+            lstSt.ForEach(_ =>
+            {
+                var item = new ListViewItem(_.CurrentTime.ToString("dd/MM/yyyy HH:mm:ss") + " - " + _.Message);
+                lsvStatus.Items.Add(item);
+                if (_.MsgStatus == MessageStatus.Fail)
+                    item.ForeColor = Color.Red;
+            });
+
+
+            List<ExportViewModel> exportViewModels = new List<ExportViewModel>();
+            exportViewModels.Add(new ExportViewModel
+            {
+                Key = 1,
+                Value = "JSON"
+            });
+            exportViewModels.Add(new ExportViewModel
+            {
+                Key = 2,
+                Value = "CSV"
+            });
+            exportViewModels.Add(new ExportViewModel
+            {
+                Key = 3,
+                Value = "Excel"
+            });
+
+            cmbExport.DataSource = new BindingSource(exportViewModels, null);
+            cmbExport.DisplayMember = "Value";
+            cmbExport.ValueMember = "Key";
         }
 
+
+        private List<Status> StatusList(List<Status> statuses)
+        {
+
+            var lstSt = new List<Status>();
+            lstSt.Add(new Status
+            {
+                CurrentTime = DateTime.Now,
+                Message = "Hi! Let make it funny now!",
+                MsgStatus = MessageStatus.None,
+            });
+
+            if (statuses != null && statuses.Count > 0)
+                lstSt.AddRange(statuses);
+
+            return lstSt;
+        }
 
         private void btnBrowConfig_Click(object sender, EventArgs e)
         {
@@ -167,9 +224,110 @@ namespace UiPathIsFunny.View
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            FrmLoad frmLoad = new FrmLoad();
-            frmLoad.ShowDialog();
+            if (filesProcess == null && filesProcess.Count() == 0)
+            {
+                MessageBox.Show("Please click on Browser button to import your XAML files!");
+                return;
+            }
+
+            if (lstConfig == null && lstConfig.Count() == 0)
+            {
+                MessageBox.Show("Please setting your Keywords first!");
+                return;
+            }
+
+            FolderBrowserDialog folderDlg = new FolderBrowserDialog();
+            folderDlg.ShowNewFolderButton = true;
+            // Show the FolderBrowserDialog.  
+            DialogResult result = folderDlg.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                if (String.IsNullOrEmpty(folderDlg.SelectedPath.Trim()))
+                    return;
+                FrmLoad frmLoad = new FrmLoad(folderDlg.SelectedPath.Trim(), filesProcess, lstConfig, chkDetail.Checked);
+                frmLoad.ShowDialog();
+
+                // update list here:
+            }
+
+            filesProcess = null;
         }
-        
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnFolderXAML_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog folderDlg = new FolderBrowserDialog();
+            // Show the FolderBrowserDialog.  
+            DialogResult result = folderDlg.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                if (String.IsNullOrEmpty(folderDlg.SelectedPath.Trim()))
+                    return;
+                string directory = folderDlg.SelectedPath.Trim();
+                filesProcess = Directory.GetFiles(directory, "*.xaml", SearchOption.AllDirectories);
+
+                txtXAMpath.Text = directory;
+                lsvStatus.Items.Clear();
+
+                var lstStAppend = new List<Status>();
+
+                if (filesProcess.Count() == 0)
+                    lstStAppend.Add(new Status
+                    {
+                        CurrentTime = DateTime.Now,
+                        Message = "Wrong! There aren't any file XAML in this folder :(",
+                        MsgStatus = MessageStatus.Warning
+                    });
+                else {
+                    lstStAppend.Add(new Status
+                    {
+                        CurrentTime = DateTime.Now,
+                        Message = "List of XAML files loaded successfully!",
+                        MsgStatus = MessageStatus.None
+                    });
+
+                    foreach (var item in filesProcess)
+                    {
+                        lstStAppend.Add(new Status
+                        {
+                            CurrentTime = DateTime.Now,
+                            Message = item + " -> Ready",
+                            MsgStatus = MessageStatus.OK
+                        });
+                    }
+
+                    lstStAppend.Add(new Status
+                    {
+                        CurrentTime = DateTime.Now,
+                        Message = "Click Start button to Make it Funny!",
+                        MsgStatus = MessageStatus.None
+                    });
+                }
+                
+                
+                var lstSt = StatusList(lstStAppend);
+
+                lstSt.ForEach(_ =>
+                {
+                    var item = new ListViewItem(_.CurrentTime.ToString("dd/MM/yyyy HH:mm:ss") + " - " + _.Message);
+                    lsvStatus.Items.Add(item);
+                    if (_.MsgStatus == MessageStatus.Fail)
+                        item.ForeColor = Color.Red;
+                    if (_.MsgStatus == MessageStatus.OK)
+                        item.ForeColor = Color.Green;
+                    if (_.MsgStatus == MessageStatus.Warning)
+                        item.ForeColor = Color.Orange;
+                });
+            }
+        }
     }
 }

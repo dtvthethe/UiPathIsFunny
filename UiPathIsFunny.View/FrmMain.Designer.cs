@@ -41,15 +41,12 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.btnStart = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtXAMpath = new System.Windows.Forms.TextBox();
             this.btnFolderXAML = new System.Windows.Forms.Button();
             this.lsvStatus = new System.Windows.Forms.ListView();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtExportTo = new System.Windows.Forms.TextBox();
-            this.btnBrowser = new System.Windows.Forms.Button();
-            this.btnExport = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.cmbExport = new System.Windows.Forms.ComboBox();
+            this.chkDetail = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -82,20 +79,21 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Config";
             this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(544, 46);
+            this.btnSave.Location = new System.Drawing.Point(520, 15);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.Size = new System.Drawing.Size(102, 23);
             this.btnSave.TabIndex = 26;
-            this.btnSave.Text = "Save";
+            this.btnSave.Text = "Save to Config";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(625, 17);
+            this.btnEdit.Location = new System.Drawing.Point(96, 54);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(75, 23);
             this.btnEdit.TabIndex = 25;
@@ -117,7 +115,7 @@
             // 
             // btnRemove
             // 
-            this.btnRemove.Location = new System.Drawing.Point(706, 17);
+            this.btnRemove.Location = new System.Drawing.Point(177, 54);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(75, 23);
             this.btnRemove.TabIndex = 23;
@@ -127,7 +125,7 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(544, 17);
+            this.btnAdd.Location = new System.Drawing.Point(15, 54);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
             this.btnAdd.TabIndex = 22;
@@ -164,15 +162,12 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.chkDetail);
             this.tabPage2.Controls.Add(this.btnStart);
             this.tabPage2.Controls.Add(this.label3);
-            this.tabPage2.Controls.Add(this.textBox1);
+            this.tabPage2.Controls.Add(this.txtXAMpath);
             this.tabPage2.Controls.Add(this.btnFolderXAML);
             this.tabPage2.Controls.Add(this.lsvStatus);
-            this.tabPage2.Controls.Add(this.label2);
-            this.tabPage2.Controls.Add(this.txtExportTo);
-            this.tabPage2.Controls.Add(this.btnBrowser);
-            this.tabPage2.Controls.Add(this.btnExport);
             this.tabPage2.Controls.Add(this.label6);
             this.tabPage2.Controls.Add(this.cmbExport);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
@@ -185,7 +180,7 @@
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(359, 75);
+            this.btnStart.Location = new System.Drawing.Point(426, 73);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(75, 23);
             this.btnStart.TabIndex = 35;
@@ -196,78 +191,45 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(356, 29);
+            this.label3.Location = new System.Drawing.Point(34, 28);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(68, 13);
             this.label3.TabIndex = 34;
             this.label3.Text = "XAML folder:";
             // 
-            // textBox1
+            // txtXAMpath
             // 
-            this.textBox1.Location = new System.Drawing.Point(431, 29);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(121, 20);
-            this.textBox1.TabIndex = 33;
+            this.txtXAMpath.Location = new System.Drawing.Point(109, 28);
+            this.txtXAMpath.Name = "txtXAMpath";
+            this.txtXAMpath.ReadOnly = true;
+            this.txtXAMpath.Size = new System.Drawing.Size(311, 20);
+            this.txtXAMpath.TabIndex = 33;
             // 
             // btnFolderXAML
             // 
-            this.btnFolderXAML.Location = new System.Drawing.Point(568, 27);
+            this.btnFolderXAML.Location = new System.Drawing.Point(426, 28);
             this.btnFolderXAML.Name = "btnFolderXAML";
             this.btnFolderXAML.Size = new System.Drawing.Size(75, 23);
             this.btnFolderXAML.TabIndex = 32;
             this.btnFolderXAML.Text = "Browser";
             this.btnFolderXAML.UseVisualStyleBackColor = true;
+            this.btnFolderXAML.Click += new System.EventHandler(this.btnFolderXAML_Click);
             // 
             // lsvStatus
             // 
             this.lsvStatus.FullRowSelect = true;
-            this.lsvStatus.GridLines = true;
+            this.lsvStatus.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lsvStatus.Location = new System.Drawing.Point(8, 165);
-            this.lsvStatus.MultiSelect = false;
             this.lsvStatus.Name = "lsvStatus";
             this.lsvStatus.Size = new System.Drawing.Size(793, 191);
             this.lsvStatus.TabIndex = 31;
             this.lsvStatus.UseCompatibleStateImageBehavior = false;
-            this.lsvStatus.View = System.Windows.Forms.View.List;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(21, 65);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(52, 13);
-            this.label2.TabIndex = 30;
-            this.label2.Text = "Export to:";
-            // 
-            // txtExportTo
-            // 
-            this.txtExportTo.Location = new System.Drawing.Point(96, 65);
-            this.txtExportTo.Name = "txtExportTo";
-            this.txtExportTo.Size = new System.Drawing.Size(121, 20);
-            this.txtExportTo.TabIndex = 29;
-            // 
-            // btnBrowser
-            // 
-            this.btnBrowser.Location = new System.Drawing.Point(233, 63);
-            this.btnBrowser.Name = "btnBrowser";
-            this.btnBrowser.Size = new System.Drawing.Size(75, 23);
-            this.btnBrowser.TabIndex = 28;
-            this.btnBrowser.Text = "Browser";
-            this.btnBrowser.UseVisualStyleBackColor = true;
-            // 
-            // btnExport
-            // 
-            this.btnExport.Location = new System.Drawing.Point(233, 26);
-            this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(75, 23);
-            this.btnExport.TabIndex = 27;
-            this.btnExport.Text = "Export";
-            this.btnExport.UseVisualStyleBackColor = true;
+            this.lsvStatus.View = System.Windows.Forms.View.Details;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(34, 26);
+            this.label6.Location = new System.Drawing.Point(34, 80);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(52, 13);
             this.label6.TabIndex = 26;
@@ -275,11 +237,22 @@
             // 
             // cmbExport
             // 
-            this.cmbExport.FormattingEnabled = true;
-            this.cmbExport.Location = new System.Drawing.Point(96, 23);
+            this.cmbExport.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbExport.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.cmbExport.Location = new System.Drawing.Point(96, 77);
             this.cmbExport.Name = "cmbExport";
             this.cmbExport.Size = new System.Drawing.Size(121, 21);
             this.cmbExport.TabIndex = 25;
+            // 
+            // chkDetail
+            // 
+            this.chkDetail.AutoSize = true;
+            this.chkDetail.Location = new System.Drawing.Point(244, 79);
+            this.chkDetail.Name = "chkDetail";
+            this.chkDetail.Size = new System.Drawing.Size(84, 17);
+            this.chkDetail.TabIndex = 36;
+            this.chkDetail.Text = "Export detail";
+            this.chkDetail.UseVisualStyleBackColor = true;
             // 
             // FrmMain
             // 
@@ -308,20 +281,17 @@
         private System.Windows.Forms.TextBox txtConfigTag;
         private System.Windows.Forms.Button btnBrowConfig;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cmbExport;
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.ListView lsvConfig;
         private System.Windows.Forms.ListView lsvStatus;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtExportTo;
-        private System.Windows.Forms.Button btnBrowser;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtXAMpath;
         private System.Windows.Forms.Button btnFolderXAML;
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.CheckBox chkDetail;
     }
 }
 

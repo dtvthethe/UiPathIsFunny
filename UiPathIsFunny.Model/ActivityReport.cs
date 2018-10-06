@@ -9,5 +9,6 @@ namespace UiPathIsFunny.Model
 
         public List<Activity> Activities { get; set; }
 
+
     }
 }
