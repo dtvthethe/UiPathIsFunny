@@ -40,6 +40,7 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.lsvConfig = new System.Windows.Forms.ListView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btnLog = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnFolderXAML = new System.Windows.Forms.Button();
@@ -50,7 +51,8 @@
             this.chkDetail = new System.Windows.Forms.CheckBox();
             this.lsvStatus = new System.Windows.Forms.ListView();
             this.btnStart = new System.Windows.Forms.Button();
-            this.btnLog = new System.Windows.Forms.Button();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -64,10 +66,12 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(618, 368);
+            this.tabControl1.Size = new System.Drawing.Size(618, 260);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -78,7 +82,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(610, 342);
+            this.tabPage1.Size = new System.Drawing.Size(610, 234);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Config";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -176,7 +180,7 @@
             this.lsvConfig.Location = new System.Drawing.Point(3, 68);
             this.lsvConfig.MultiSelect = false;
             this.lsvConfig.Name = "lsvConfig";
-            this.lsvConfig.Size = new System.Drawing.Size(603, 270);
+            this.lsvConfig.Size = new System.Drawing.Size(603, 162);
             this.lsvConfig.TabIndex = 24;
             this.lsvConfig.UseCompatibleStateImageBehavior = false;
             this.lsvConfig.View = System.Windows.Forms.View.Details;
@@ -191,10 +195,20 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(610, 342);
+            this.tabPage2.Size = new System.Drawing.Size(610, 234);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Make it Funny";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // btnLog
+            // 
+            this.btnLog.Location = new System.Drawing.Point(572, 56);
+            this.btnLog.Name = "btnLog";
+            this.btnLog.Size = new System.Drawing.Size(34, 23);
+            this.btnLog.TabIndex = 38;
+            this.btnLog.Text = ">>";
+            this.btnLog.UseVisualStyleBackColor = true;
+            this.btnLog.Click += new System.EventHandler(this.btnLog_Click);
             // 
             // groupBox3
             // 
@@ -281,7 +295,7 @@
             this.lsvStatus.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lsvStatus.Location = new System.Drawing.Point(3, 85);
             this.lsvStatus.Name = "lsvStatus";
-            this.lsvStatus.Size = new System.Drawing.Size(605, 254);
+            this.lsvStatus.Size = new System.Drawing.Size(605, 146);
             this.lsvStatus.TabIndex = 31;
             this.lsvStatus.UseCompatibleStateImageBehavior = false;
             this.lsvStatus.View = System.Windows.Forms.View.Details;
@@ -298,15 +312,25 @@
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
-            // btnLog
+            // tabPage3
             // 
-            this.btnLog.Location = new System.Drawing.Point(572, 56);
-            this.btnLog.Name = "btnLog";
-            this.btnLog.Size = new System.Drawing.Size(34, 23);
-            this.btnLog.TabIndex = 38;
-            this.btnLog.Text = ">>";
-            this.btnLog.UseVisualStyleBackColor = true;
-            this.btnLog.Click += new System.EventHandler(this.btnLog_Click);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(610, 234);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Easy to use";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(610, 234);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "About";
+            this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // FrmMain
             // 
@@ -314,7 +338,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
-            this.ClientSize = new System.Drawing.Size(616, 367);
+            this.ClientSize = new System.Drawing.Size(616, 259);
             this.Controls.Add(this.tabControl1);
             this.MaximizeBox = false;
             this.Name = "FrmMain";
@@ -358,6 +382,8 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnLog;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tabPage4;
     }
 }
 
