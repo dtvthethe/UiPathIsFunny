@@ -21,6 +21,7 @@ namespace UiPathIsFunny.Business
                     string[] arrLine = line.Split(',');
                     if (arrLine.Count() == 2)
                     {
+                        //if(arrLine[0].)// => validate iong nhu luc add file + validate cho phan keyeord nua
                         lstConfig.Add(new Config
                         {
                             Name = arrLine[0],

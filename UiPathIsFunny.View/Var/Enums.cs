@@ -14,5 +14,12 @@
             OK,
             Fail
         }
+
+        public enum ExportType
+        {
+            JSON,
+            CSV,
+            EXCEL
+        }
     }
 }

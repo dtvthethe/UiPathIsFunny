@@ -43,6 +43,7 @@
     <Compile Include="Activity.cs" />
     <Compile Include="ActivityReport.cs" />
     <Compile Include="Config.cs" />
+    <Compile Include="Error.cs" />
     <Compile Include="IAuditable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

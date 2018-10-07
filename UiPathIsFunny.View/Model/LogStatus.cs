@@ -3,7 +3,7 @@ using static UiPathIsFunny.Utility.Enums;
 
 namespace UiPathIsFunny.View.Model
 {
-    public class Status
+    public class LogStatus
     {
         public DateTime CurrentTime { get; set; }
 

@@ -1,14 +1,9 @@
 ﻿using AutoMapper;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using UiPathIsFunny.Business;
 using UiPathIsFunny.Model;
@@ -21,6 +16,7 @@ namespace UiPathIsFunny.View
     {
 
         private List<Config> lstConfig;
+        private List<LogStatus> logStatuses;
         private ConfigBusiness configBusiness;
         private string[] filesProcess;
 
@@ -31,22 +27,22 @@ namespace UiPathIsFunny.View
             lstConfig = new List<Config>();
             configBusiness = new ConfigBusiness();
 
-            lsvConfig.Columns.Add("Name", lsvConfig.Width / 2);
-            lsvConfig.Columns.Add("Keyword", lsvConfig.Width / 2);
+            lsvConfig.Columns.Add("Name", (lsvConfig.Width / 2) - 5);
+            lsvConfig.Columns.Add("Keyword", (lsvConfig.Width / 2));
 
-            lsvStatus.Columns.Add("", lsvStatus.Width);
+            lsvStatus.Columns.Add("", lsvStatus.Width - 10);
 
 
-            var lstStAppend = new List<Status>();
-            lstStAppend.Add(new Status
+            var lstStAppend = new List<LogStatus>();
+            lstStAppend.Add(new LogStatus
             {
                 CurrentTime = DateTime.Now,
                 Message = "Please click on Browser button to import your XAML files!",
                 MsgStatus = MessageStatus.Fail
             });
-            var lstSt = StatusList(lstStAppend);
+            logStatuses = StatusList(lstStAppend);
 
-            lstSt.ForEach(_ =>
+            logStatuses.ForEach(_ =>
             {
                 var item = new ListViewItem(_.CurrentTime.ToString("dd/MM/yyyy HH:mm:ss") + " - " + _.Message);
                 lsvStatus.Items.Add(item);
@@ -54,35 +50,16 @@ namespace UiPathIsFunny.View
                     item.ForeColor = Color.Red;
             });
 
+            cmbExport.DataSource = Enum.GetValues(typeof(ExportType));
 
-            List<ExportViewModel> exportViewModels = new List<ExportViewModel>();
-            exportViewModels.Add(new ExportViewModel
-            {
-                Key = 1,
-                Value = "JSON"
-            });
-            exportViewModels.Add(new ExportViewModel
-            {
-                Key = 2,
-                Value = "CSV"
-            });
-            exportViewModels.Add(new ExportViewModel
-            {
-                Key = 3,
-                Value = "Excel"
-            });
-
-            cmbExport.DataSource = new BindingSource(exportViewModels, null);
-            cmbExport.DisplayMember = "Value";
-            cmbExport.ValueMember = "Key";
         }
 
 
-        private List<Status> StatusList(List<Status> statuses)
+        private List<LogStatus> StatusList(List<LogStatus> statuses)
         {
 
-            var lstSt = new List<Status>();
-            lstSt.Add(new Status
+            var lstSt = new List<LogStatus>();
+            lstSt.Add(new LogStatus
             {
                 CurrentTime = DateTime.Now,
                 Message = "Hi! Let make it funny now!",
@@ -127,7 +104,6 @@ namespace UiPathIsFunny.View
                         item.SubItems.Add(_.Keyword);
                         lsvConfig.Items.Add(item);
                     });
-
                 }
             }
             catch (Exception ex)
@@ -138,14 +114,14 @@ namespace UiPathIsFunny.View
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            FrmConfig frmConfig = new FrmConfig(null);
+            FrmConfig frmConfig = new FrmConfig(null, lstConfig, -1);
             frmConfig.ShowDialog();
             if (frmConfig.DialogResult == DialogResult.Cancel)
                 return;
 
-            if (frmConfig.configViewModel != null && !String.IsNullOrEmpty(frmConfig.configViewModel.Name.Trim()))
+            if (frmConfig.ConfigViewModel != null && !String.IsNullOrEmpty(frmConfig.ConfigViewModel.Name.Trim()))
             {
-                lstConfig.Add(Mapper.Map<Config>(frmConfig.configViewModel));
+                lstConfig.Add(Mapper.Map<Config>(frmConfig.ConfigViewModel));
                 lsvConfig.Items.Clear();
                 lstConfig.ForEach(_ =>
                 {
@@ -161,14 +137,18 @@ namespace UiPathIsFunny.View
             if (lsvConfig.SelectedItems.Count > 0)
             {
                 int index = lsvConfig.Items.IndexOf(lsvConfig.SelectedItems[0]);
-                lstConfig.RemoveAt(index);
-                lsvConfig.Items.Clear();
-                lstConfig.ForEach(_ =>
+                DialogResult dialogResult = MessageBox.Show("Do you want remove \"" + lstConfig[index].Name + "\"?", "Remove", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
                 {
-                    var item = new ListViewItem(_.Name);
-                    item.SubItems.Add(_.Keyword);
-                    lsvConfig.Items.Add(item);
-                });
+                    lstConfig.RemoveAt(index);
+                    lsvConfig.Items.Clear();
+                    lstConfig.ForEach(_ =>
+                    {
+                        var item = new ListViewItem(_.Name);
+                        item.SubItems.Add(_.Keyword);
+                        lsvConfig.Items.Add(item);
+                    });
+                }
             }
 
         }
@@ -178,14 +158,14 @@ namespace UiPathIsFunny.View
             if (lsvConfig.SelectedItems.Count > 0)
             {
                 int index = lsvConfig.Items.IndexOf(lsvConfig.SelectedItems[0]);
-                FrmConfig frmConfig = new FrmConfig(Mapper.Map<ConfigViewModel>(lstConfig[index]));
+                FrmConfig frmConfig = new FrmConfig(Mapper.Map<ConfigViewModel>(lstConfig[index]), lstConfig, index);
                 frmConfig.ShowDialog();
                 if (frmConfig.DialogResult == DialogResult.Cancel)
                     return;
 
-                if (frmConfig.configViewModel != null && !String.IsNullOrEmpty(frmConfig.configViewModel.Name.Trim()))
+                if (frmConfig.ConfigViewModel != null && !String.IsNullOrEmpty(frmConfig.ConfigViewModel.Name.Trim()))
                 {
-                    lstConfig[index] = Mapper.Map<Config>(frmConfig.configViewModel);
+                    lstConfig[index] = Mapper.Map<Config>(frmConfig.ConfigViewModel);
                     lsvConfig.Items.Clear();
                     lstConfig.ForEach(_ =>
                     {
@@ -202,37 +182,45 @@ namespace UiPathIsFunny.View
             if (lstConfig == null || lstConfig.Count == 0)
                 return;
 
-            if (String.IsNullOrEmpty(txtConfigTag.Text.Trim()))
+            try
             {
-                FolderBrowserDialog folderDlg = new FolderBrowserDialog();
-                folderDlg.ShowNewFolderButton = true;
-                // Show the FolderBrowserDialog.  
-                DialogResult result = folderDlg.ShowDialog();
-                if (result == DialogResult.OK)
+                if (String.IsNullOrEmpty(txtConfigTag.Text.Trim()))
                 {
-                    string pathFile = Path.Combine(folderDlg.SelectedPath.Trim(), "UiPath_Is_Funny_Config_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".config");
-                    txtConfigTag.Text = pathFile;
+                    FolderBrowserDialog folderDlg = new FolderBrowserDialog();
+                    folderDlg.ShowNewFolderButton = true;
+                    // Show the FolderBrowserDialog.  
+                    DialogResult result = folderDlg.ShowDialog();
+                    if (result == DialogResult.OK)
+                    {
+                        string pathFile = Path.Combine(folderDlg.SelectedPath.Trim(), "UiPath_Is_Funny_Config_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".config");
+                        txtConfigTag.Text = pathFile;
 
-                    configBusiness.SaveAll(lstConfig, pathFile);
+                        configBusiness.SaveAll(lstConfig, pathFile);
+                    }
                 }
+                else
+                {
+                    configBusiness.SaveAll(lstConfig, txtConfigTag.Text.Trim());
+                }
+                MessageBox.Show("Save to config file successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            else
+            catch (Exception ex)
             {
-                configBusiness.SaveAll(lstConfig, txtConfigTag.Text.Trim());
+                MessageBox.Show(ex.Message, "Oops", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            if (filesProcess == null && filesProcess.Count() == 0)
+            if (filesProcess == null || filesProcess.Length == 0)
             {
-                MessageBox.Show("Please click on Browser button to import your XAML files!");
+                MessageBox.Show("Opps..! There aren't any XAML file. Please click on Browser button to import your XAML files!");
                 return;
             }
 
-            if (lstConfig == null && lstConfig.Count() == 0)
+            if (lstConfig == null || lstConfig.Count() == 0)
             {
-                MessageBox.Show("Please setting your Keywords first!");
+                MessageBox.Show("Please go to [Config] tab to setting your Keywords first!");
                 return;
             }
 
@@ -244,23 +232,27 @@ namespace UiPathIsFunny.View
             {
                 if (String.IsNullOrEmpty(folderDlg.SelectedPath.Trim()))
                     return;
-                FrmLoad frmLoad = new FrmLoad(folderDlg.SelectedPath.Trim(), filesProcess, lstConfig, chkDetail.Checked);
+
+                FrmLoad frmLoad = new FrmLoad(folderDlg.SelectedPath.Trim(), filesProcess, lstConfig, chkDetail.Checked, (ExportType)cmbExport.SelectedItem);
                 frmLoad.ShowDialog();
 
                 // update list here:
+                lsvStatus.Items.Clear();
+                logStatuses = frmLoad.LogStatuses;
+                logStatuses.ForEach(_ =>
+                {
+                    var item = new ListViewItem(_.CurrentTime.ToString("dd/MM/yyyy HH:mm:ss") + " - " + _.Message);
+                    lsvStatus.Items.Add(item);
+                    if (_.MsgStatus == MessageStatus.Fail)
+                        item.ForeColor = Color.Red;
+                    if (_.MsgStatus == MessageStatus.OK)
+                        item.ForeColor = Color.Green;
+                    if (_.MsgStatus == MessageStatus.Warning)
+                        item.ForeColor = Color.Orange;
+                });
             }
 
             filesProcess = null;
-        }
-
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnExport_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void btnFolderXAML_Click(object sender, EventArgs e)
@@ -278,17 +270,18 @@ namespace UiPathIsFunny.View
                 txtXAMpath.Text = directory;
                 lsvStatus.Items.Clear();
 
-                var lstStAppend = new List<Status>();
+                var lstStAppend = new List<LogStatus>();
 
                 if (filesProcess.Count() == 0)
-                    lstStAppend.Add(new Status
+                    lstStAppend.Add(new LogStatus
                     {
                         CurrentTime = DateTime.Now,
                         Message = "Wrong! There aren't any file XAML in this folder :(",
                         MsgStatus = MessageStatus.Warning
                     });
-                else {
-                    lstStAppend.Add(new Status
+                else
+                {
+                    lstStAppend.Add(new LogStatus
                     {
                         CurrentTime = DateTime.Now,
                         Message = "List of XAML files loaded successfully!",
@@ -297,7 +290,7 @@ namespace UiPathIsFunny.View
 
                     foreach (var item in filesProcess)
                     {
-                        lstStAppend.Add(new Status
+                        lstStAppend.Add(new LogStatus
                         {
                             CurrentTime = DateTime.Now,
                             Message = item + " -> Ready",
@@ -305,18 +298,18 @@ namespace UiPathIsFunny.View
                         });
                     }
 
-                    lstStAppend.Add(new Status
+                    lstStAppend.Add(new LogStatus
                     {
                         CurrentTime = DateTime.Now,
                         Message = "Click Start button to Make it Funny!",
                         MsgStatus = MessageStatus.None
                     });
                 }
-                
-                
-                var lstSt = StatusList(lstStAppend);
 
-                lstSt.ForEach(_ =>
+
+                logStatuses = StatusList(lstStAppend);
+
+                logStatuses.ForEach(_ =>
                 {
                     var item = new ListViewItem(_.CurrentTime.ToString("dd/MM/yyyy HH:mm:ss") + " - " + _.Message);
                     lsvStatus.Items.Add(item);
@@ -328,6 +321,12 @@ namespace UiPathIsFunny.View
                         item.ForeColor = Color.Orange;
                 });
             }
+        }
+
+        private void btnLog_Click(object sender, EventArgs e)
+        {
+            FrmLog frmLog = new FrmLog(logStatuses);
+            frmLog.ShowDialog();
         }
     }
 }

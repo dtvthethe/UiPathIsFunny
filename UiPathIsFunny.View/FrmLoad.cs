@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using UiPathIsFunny.Business;
 using UiPathIsFunny.Model;
@@ -21,17 +16,29 @@ namespace UiPathIsFunny.View
         private string[] files;
         private bool detailMode;
         private List<Config> configs;
+        private ExportType exportType;
+
+        public List<LogStatus> LogStatuses;
+
 
         public List<ActivityReport> activityReports;
 
-        public FrmLoad(string exportPath, string[] files, List<Config> configs, bool detailMode)
+        public FrmLoad(string exportPath, string[] files, List<Config> configs, bool detailMode, ExportType exportType)
         {
             InitializeComponent();
             this.exportPath = exportPath;
             this.files = files;
             this.configs = configs;
             this.detailMode = detailMode;
+            this.exportType = exportType;
+            LogStatuses = new List<LogStatus>();
             activityReports = new List<ActivityReport>();
+            LogStatuses.Add(new LogStatus
+            {
+                CurrentTime = DateTime.Now,
+                Message = "XAML files processed.",
+                MsgStatus = MessageStatus.None
+            });
         }
 
         private List<Activity> CreateListActivity(List<Config> configs)
@@ -60,37 +67,87 @@ namespace UiPathIsFunny.View
             this.Activated -= AfterLoading;
             XAMLFileBusiness aMLFileBusiness = new XAMLFileBusiness();
 
+            bool isError = false;
+
             // Count by keyword:
             for (int i = 0; i < files.Count(); i++)
             {
-
-                
-                var lstCount = aMLFileBusiness.CountActicities(files[i], CreateListActivity(configs));
-                activityReports.Add(new ActivityReport
+                try
                 {
-                    FileName = files[i],
-                    Activities = lstCount.ToList()
-                });
-
-            }
-            try
-            {
-                if (detailMode)
+                    var lstCount = aMLFileBusiness.CountActicities(files[i], CreateListActivity(configs));
+                    activityReports.Add(new ActivityReport
+                    {
+                        FileName = files[i],
+                        Activities = lstCount.ToList()
+                    });
+                    LogStatuses.Add(new LogStatus
+                    {
+                        CurrentTime = DateTime.Now,
+                        Message = files[i] + " -> Success.",
+                        MsgStatus = MessageStatus.OK
+                    });
+                }
+                catch (Exception ex)
                 {
-                    Export.ToExcel(activityReports, exportPath);
+                    LogStatuses.Add(new LogStatus
+                    {
+                        CurrentTime = DateTime.Now,
+                        Message = files[i] + " -> Error: " + Environment.NewLine + ex.Message,
+                        MsgStatus = MessageStatus.Fail
+                    });
+                    isError = true;
                 }
 
-                var listSummary = aMLFileBusiness.CountSummatyActicities(activityReports);
-
-                Export.ToExcelSummary(listSummary.ToList(), exportPath);
-
-                MessageBox.Show("Done");
             }
-            catch (Exception ex)
+
+            if (!isError)
             {
-                MessageBox.Show(ex.Message);
-            }
+                try
+                {
+                    var listSummary = aMLFileBusiness.CountSummatyActicities(activityReports);
+                    switch (exportType)
+                    {
+                        case ExportType.JSON:
+                            if (detailMode)
+                                Export.ToJSON(activityReports, exportPath);
+                            Export.ToJSONSummary(listSummary.ToList(), exportPath);
+                            break;
+                        case ExportType.CSV:
+                            if (detailMode)
+                                Export.ToCSV(activityReports, exportPath);
+                            Export.ToCSVSummary(listSummary.ToList(), exportPath);
+                            break;
+                        case ExportType.EXCEL:
+                            if (detailMode)
+                                Export.ToExcel(activityReports, exportPath);
+                            Export.ToExcelSummary(listSummary.ToList(), exportPath);
+                            break;
+                        default:
+                            break;
+                    }
 
+                    LogStatuses.Add(new LogStatus
+                    {
+                        CurrentTime = DateTime.Now,
+                        Message = "Export successfully! -> " + exportPath,
+                        MsgStatus = MessageStatus.OK
+                    });
+                    //isError = true;
+                }
+                catch (Exception ex)
+                {
+                    LogStatuses.Add(new LogStatus
+                    {
+                        CurrentTime = DateTime.Now,
+                        Message = "Export faild: " + ex.Message,
+                        MsgStatus = MessageStatus.Fail
+                    });
+                }
+            }
+            else
+            {
+                MessageBox.Show("Error occurred when process XAML file. See the error in log.");
+            }
 
             this.DialogResult = DialogResult.OK;
             this.Close();
@@ -101,6 +158,6 @@ namespace UiPathIsFunny.View
             this.Close();
         }
 
-       
+
     }
 }
