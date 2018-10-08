@@ -44,7 +44,10 @@ namespace UiPathIsFunny.Business
                 lstActivity = activities[0].Activities;
                 for (int i = 1; i < activities.Count; i++)
                 {
-                    lstActivity = lstActivity.Join(activities[i].Activities, inner => inner.Name, outer => outer.Name, (inner, outer) =>
+                    lstActivity = lstActivity.Join(activities[i].Activities,
+                        inner => new { Name = inner.Name, Key = inner.Keyword },
+                        outer => new { Name = outer.Name, Key = outer.Keyword }
+                , (inner, outer) =>
                       new Activity
                       {
                           Keyword = inner.Keyword,
