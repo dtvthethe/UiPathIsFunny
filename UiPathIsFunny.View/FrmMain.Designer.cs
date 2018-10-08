@@ -28,17 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.txtConfigTag = new System.Windows.Forms.TextBox();
-            this.btnBrowConfig = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnEdit = new System.Windows.Forms.Button();
-            this.btnRemove = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.lsvConfig = new System.Windows.Forms.ListView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.btnLog = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -51,139 +40,25 @@
             this.chkDetail = new System.Windows.Forms.CheckBox();
             this.lsvStatus = new System.Windows.Forms.ListView();
             this.btnStart = new System.Windows.Forms.Button();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtConfigTag = new System.Windows.Forms.TextBox();
+            this.btnBrowConfig = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
+            this.btnRemove = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.lsvConfig = new System.Windows.Forms.ListView();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.tabControl1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // tabControl1
-            // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(618, 260);
-            this.tabControl1.TabIndex = 0;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.groupBox2);
-            this.tabPage1.Controls.Add(this.groupBox1);
-            this.tabPage1.Controls.Add(this.lsvConfig);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(610, 234);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Config";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.txtConfigTag);
-            this.groupBox2.Controls.Add(this.btnBrowConfig);
-            this.groupBox2.Location = new System.Drawing.Point(0, 0);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(348, 50);
-            this.groupBox2.TabIndex = 26;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Keywords file";
-            // 
-            // txtConfigTag
-            // 
-            this.txtConfigTag.Location = new System.Drawing.Point(6, 19);
-            this.txtConfigTag.Name = "txtConfigTag";
-            this.txtConfigTag.ReadOnly = true;
-            this.txtConfigTag.Size = new System.Drawing.Size(254, 20);
-            this.txtConfigTag.TabIndex = 20;
-            // 
-            // btnBrowConfig
-            // 
-            this.btnBrowConfig.Location = new System.Drawing.Point(266, 18);
-            this.btnBrowConfig.Name = "btnBrowConfig";
-            this.btnBrowConfig.Size = new System.Drawing.Size(75, 23);
-            this.btnBrowConfig.TabIndex = 19;
-            this.btnBrowConfig.Text = "Browser";
-            this.btnBrowConfig.UseVisualStyleBackColor = true;
-            this.btnBrowConfig.Click += new System.EventHandler(this.btnBrowConfig_Click);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.btnSave);
-            this.groupBox1.Controls.Add(this.btnEdit);
-            this.groupBox1.Controls.Add(this.btnRemove);
-            this.groupBox1.Controls.Add(this.btnAdd);
-            this.groupBox1.Location = new System.Drawing.Point(354, 0);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(253, 50);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "List Action";
-            // 
-            // btnSave
-            // 
-            this.btnSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.btnSave.Location = new System.Drawing.Point(159, 19);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(87, 23);
-            this.btnSave.TabIndex = 27;
-            this.btnSave.Text = "Save Config";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.btnEdit.Location = new System.Drawing.Point(47, 19);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(34, 23);
-            this.btnEdit.TabIndex = 25;
-            this.btnEdit.Text = "Edit";
-            this.btnEdit.UseVisualStyleBackColor = true;
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
-            // 
-            // btnRemove
-            // 
-            this.btnRemove.ForeColor = System.Drawing.Color.Red;
-            this.btnRemove.Location = new System.Drawing.Point(88, 19);
-            this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(64, 23);
-            this.btnRemove.TabIndex = 23;
-            this.btnRemove.Text = "Remove";
-            this.btnRemove.UseVisualStyleBackColor = true;
-            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.btnAdd.Location = new System.Drawing.Point(6, 19);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(34, 23);
-            this.btnAdd.TabIndex = 22;
-            this.btnAdd.Text = "Add";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // lsvConfig
-            // 
-            this.lsvConfig.FullRowSelect = true;
-            this.lsvConfig.GridLines = true;
-            this.lsvConfig.Location = new System.Drawing.Point(3, 68);
-            this.lsvConfig.MultiSelect = false;
-            this.lsvConfig.Name = "lsvConfig";
-            this.lsvConfig.Size = new System.Drawing.Size(603, 162);
-            this.lsvConfig.TabIndex = 24;
-            this.lsvConfig.UseCompatibleStateImageBehavior = false;
-            this.lsvConfig.View = System.Windows.Forms.View.Details;
             // 
             // tabPage2
             // 
@@ -202,11 +77,11 @@
             // 
             // btnLog
             // 
-            this.btnLog.Location = new System.Drawing.Point(572, 56);
+            this.btnLog.Location = new System.Drawing.Point(3, 56);
             this.btnLog.Name = "btnLog";
-            this.btnLog.Size = new System.Drawing.Size(34, 23);
+            this.btnLog.Size = new System.Drawing.Size(27, 23);
             this.btnLog.TabIndex = 38;
-            this.btnLog.Text = ">>";
+            this.btnLog.Text = "<<";
             this.btnLog.UseVisualStyleBackColor = true;
             this.btnLog.Click += new System.EventHandler(this.btnLog_Click);
             // 
@@ -304,33 +179,135 @@
             // 
             this.btnStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStart.ForeColor = System.Drawing.Color.Red;
-            this.btnStart.Location = new System.Drawing.Point(222, 56);
+            this.btnStart.Location = new System.Drawing.Point(371, 56);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(174, 23);
+            this.btnStart.Size = new System.Drawing.Size(239, 23);
             this.btnStart.TabIndex = 35;
             this.btnStart.Text = "Start";
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
-            // tabPage3
+            // tabPage1
             // 
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(610, 234);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Easy to use";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.tabPage1.Controls.Add(this.groupBox2);
+            this.tabPage1.Controls.Add(this.groupBox1);
+            this.tabPage1.Controls.Add(this.lsvConfig);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(610, 234);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Config";
+            this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // tabPage4
+            // groupBox2
             // 
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(610, 234);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "About";
-            this.tabPage4.UseVisualStyleBackColor = true;
+            this.groupBox2.Controls.Add(this.txtConfigTag);
+            this.groupBox2.Controls.Add(this.btnBrowConfig);
+            this.groupBox2.Location = new System.Drawing.Point(0, 0);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(362, 50);
+            this.groupBox2.TabIndex = 26;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Keywords file";
+            // 
+            // txtConfigTag
+            // 
+            this.txtConfigTag.Location = new System.Drawing.Point(6, 19);
+            this.txtConfigTag.Name = "txtConfigTag";
+            this.txtConfigTag.ReadOnly = true;
+            this.txtConfigTag.Size = new System.Drawing.Size(289, 20);
+            this.txtConfigTag.TabIndex = 20;
+            // 
+            // btnBrowConfig
+            // 
+            this.btnBrowConfig.Location = new System.Drawing.Point(301, 17);
+            this.btnBrowConfig.Name = "btnBrowConfig";
+            this.btnBrowConfig.Size = new System.Drawing.Size(56, 23);
+            this.btnBrowConfig.TabIndex = 19;
+            this.btnBrowConfig.Text = "Browser";
+            this.btnBrowConfig.UseVisualStyleBackColor = true;
+            this.btnBrowConfig.Click += new System.EventHandler(this.btnBrowConfig_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btnSave);
+            this.groupBox1.Controls.Add(this.btnEdit);
+            this.groupBox1.Controls.Add(this.btnRemove);
+            this.groupBox1.Controls.Add(this.btnAdd);
+            this.groupBox1.Location = new System.Drawing.Point(368, 0);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(239, 50);
+            this.groupBox1.TabIndex = 1;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "List Action";
+            // 
+            // btnSave
+            // 
+            this.btnSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnSave.Location = new System.Drawing.Point(157, 19);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.TabIndex = 27;
+            this.btnSave.Text = "Save Config";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnEdit.Location = new System.Drawing.Point(47, 19);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(34, 23);
+            this.btnEdit.TabIndex = 25;
+            this.btnEdit.Text = "Edit";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            // 
+            // btnRemove
+            // 
+            this.btnRemove.ForeColor = System.Drawing.Color.Red;
+            this.btnRemove.Location = new System.Drawing.Point(87, 19);
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.Size = new System.Drawing.Size(65, 23);
+            this.btnRemove.TabIndex = 23;
+            this.btnRemove.Text = "Remove";
+            this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnAdd.Location = new System.Drawing.Point(6, 19);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(34, 23);
+            this.btnAdd.TabIndex = 22;
+            this.btnAdd.Text = "Add";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // lsvConfig
+            // 
+            this.lsvConfig.FullRowSelect = true;
+            this.lsvConfig.GridLines = true;
+            this.lsvConfig.Location = new System.Drawing.Point(3, 68);
+            this.lsvConfig.MultiSelect = false;
+            this.lsvConfig.Name = "lsvConfig";
+            this.lsvConfig.Size = new System.Drawing.Size(603, 162);
+            this.lsvConfig.TabIndex = 24;
+            this.lsvConfig.UseCompatibleStateImageBehavior = false;
+            this.lsvConfig.View = System.Windows.Forms.View.Details;
+            this.lsvConfig.ColumnWidthChanging += new System.Windows.Forms.ColumnWidthChangingEventHandler(this.lsvConfig_ColumnWidthChanging);
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(618, 260);
+            this.tabControl1.TabIndex = 0;
             // 
             // FrmMain
             // 
@@ -344,46 +321,45 @@
             this.Name = "FrmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "UiPath is Funny!";
-            this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.tabPage1.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.tabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.Button btnRemove;
-        private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.TextBox txtConfigTag;
-        private System.Windows.Forms.Button btnBrowConfig;
+
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox cmbExport;
-        private System.Windows.Forms.Button btnEdit;
-        private System.Windows.Forms.ListView lsvConfig;
-        private System.Windows.Forms.ListView lsvStatus;
-        private System.Windows.Forms.Button btnStart;
-        private System.Windows.Forms.CheckBox chkDetail;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button btnLog;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnFolderXAML;
         private System.Windows.Forms.TextBox txtXAMpath;
         private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.ComboBox cmbExport;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.CheckBox chkDetail;
+        private System.Windows.Forms.ListView lsvStatus;
+        private System.Windows.Forms.Button btnStart;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.TextBox txtConfigTag;
+        private System.Windows.Forms.Button btnBrowConfig;
+        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.Button btnLog;
-        private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.Button btnEdit;
+        private System.Windows.Forms.Button btnRemove;
+        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.ListView lsvConfig;
+        private System.Windows.Forms.TabControl tabControl1;
     }
 }
 

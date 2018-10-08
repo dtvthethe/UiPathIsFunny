@@ -49,6 +49,10 @@
       <Project>{4D7B5AA3-5666-45B3-9D46-F6C5F07C4F09}</Project>
       <Name>UiPathIsFunny.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\UiPathIsFunny.Utility\UiPathIsFunny.Utility.csproj">
+      <Project>{1C375B8D-DA9C-42C4-BF9F-5C5FE99C1364}</Project>
+      <Name>UiPathIsFunny.Utility</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -42,6 +42,7 @@
             this.lsvStatus.TabIndex = 32;
             this.lsvStatus.UseCompatibleStateImageBehavior = false;
             this.lsvStatus.View = System.Windows.Forms.View.Details;
+            this.lsvStatus.Resize += new System.EventHandler(this.lsvStatus_Resize);
             // 
             // FrmLog
             // 

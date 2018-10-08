@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using UiPathIsFunny.Model;
+using UiPathIsFunny.Utility;
 using UiPathIsFunny.View.Model;
 
 namespace UiPathIsFunny.View
@@ -16,21 +14,20 @@ namespace UiPathIsFunny.View
         private List<Config> configs;
         private int index;
 
-        public FrmConfig(ConfigViewModel configViewModel, List<Config> lstConfig, int index)
+        public FrmConfig(ConfigViewModel configViewModel, List<Config> configs, int index)
         {
             InitializeComponent();
 
-            configs = lstConfig;
+            this.configs = configs;
             this.index = index;
             Init(configViewModel);
         }
 
         private void Init(ConfigViewModel configViewModel)
         {
-            configViewModel = new ConfigViewModel();
-
             if (configViewModel != null)
             {
+                ConfigViewModel = configViewModel;
                 this.ConfigViewModel = configViewModel;
                 txtName.Text = this.ConfigViewModel.Name;
                 txtKeyword.Text = this.ConfigViewModel.Keyword;
@@ -39,125 +36,48 @@ namespace UiPathIsFunny.View
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            bool isValidName = false;
-            bool isValidKeyword = false;
+            try
+            {
+                var nameValidate = ConfigValidate.NameValidate(txtName.Text, index, configs);
+                var keywordValidate = ConfigValidate.KeywordValidate(txtKeyword.Text, index, configs);
 
-            if (String.IsNullOrEmpty(txtName.Text.Trim()))
-            {
-                errorProvider.SetError(txtName, "Please enter the name value");
-                txtName.Focus();
-                //return;
-            }
-            else
-            {
-                if (!Regex.IsMatch(txtName.Text, @"^[a-zA-Z0-9]+$"))
+                if (nameValidate.IsError)
                 {
-                    errorProvider.SetError(txtName, "The name is not valid :(");
+                    errorProvider.SetError(txtName, nameValidate.Message);
                     txtName.Focus();
-                    //return;
                 }
                 else
+                    errorProvider.SetError(txtName, null);
+
+                if (keywordValidate.IsError)
                 {
-                    if (index == -1) {
-                        // add case:
-                        if (configs.Where(_ => _.Name.Equals(txtName.Text)).Count() > 0)
-                        {
-                            errorProvider.SetError(txtName, "Opps! This name really exists in your config.");
-                            txtName.Focus();
-                            //return;
-                        }
-                        else {
-                            errorProvider.SetError(txtName, null);
-                            isValidName = true;
-                        }
-                    }
-                    else
-                    {
-                        // edit case:
-                        bool fl = false;
-                        for (int i = 0; i < configs.Count(); i++)
-                        {
-                            if (i != index && configs[i].Name.Equals(txtName.Text))
-                            {
-                                fl = true;
-                                break;
-                            }
-                        }
-                        if (fl)
-                        {
-                            errorProvider.SetError(txtName, "Opps! This name really exists in your config.");
-                            txtName.Focus();
-                        }
-                        else
-                        {
-                            errorProvider.SetError(txtName, null);
-                            isValidName = true;
-                        }
-                    }
-
-                }
-            }
-
-
-            if (String.IsNullOrEmpty(txtKeyword.Text.Trim()))
-            {
-                errorProvider.SetError(txtKeyword, "Please enter the keyword value");
-                txtKeyword.Focus();
-                //return;
-            }
-            else
-            {
-                if (index == -1) {
-                    // add case:
-                    if (configs.Where(_ => _.Keyword.Equals(txtKeyword.Text)).Count() > 0)
-                    {
-                        errorProvider.SetError(txtKeyword, "Opps! This keyword really exists in your config.");
-                        txtKeyword.Focus();
-                        //return;
-                    }
-                    else
-                    {
-                        errorProvider.SetError(txtKeyword, null);
-                        isValidKeyword = true;
-                    }
+                    errorProvider.SetError(txtKeyword, keywordValidate.Message);
+                    txtKeyword.Focus();
                 }
                 else
-                {
-                    bool fl = false;
-                    for (int i = 0; i < configs.Count(); i++)
-                    {
-                        if (i != index && configs[i].Keyword.Equals(txtKeyword.Text))
-                        {
-                            fl = true;
-                            break;
-                        }
-                    }
-                    if (fl)
-                    {
-                        errorProvider.SetError(txtKeyword, "Opps! This keyword really exists in your config.");
-                        txtKeyword.Focus();
-                    }
-                    else
-                    {
-                        errorProvider.SetError(txtKeyword, null);
-                        isValidKeyword = true;
-                    }
-                }
-            }
+                    errorProvider.SetError(txtKeyword, null);
 
-            if (isValidName == true && isValidKeyword == true)
-            {
-                ConfigViewModel = new ConfigViewModel
+
+                if (!nameValidate.IsError && !keywordValidate.IsError)
                 {
-                    Name = txtName.Text,
-                    Keyword = txtKeyword.Text
-                };
-                DialogResult = DialogResult.OK;
-                this.Close();
+                    ConfigViewModel = new ConfigViewModel
+                    {
+                        Name = txtName.Text,
+                        Keyword = txtKeyword.Text
+                    };
+                    DialogResult = DialogResult.OK;
+                    this.Close();
+                }
+                else
+                    return;
             }
-            else
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Oops", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ConfigViewModel = null;
+                DialogResult = DialogResult.Cancel;
                 return;
-
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -166,5 +86,6 @@ namespace UiPathIsFunny.View
             DialogResult = DialogResult.Cancel;
             this.Close();
         }
+
     }
 }

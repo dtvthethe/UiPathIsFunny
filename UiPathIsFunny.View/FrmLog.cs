@@ -21,17 +21,33 @@ namespace UiPathIsFunny.View
         private void FrmLog_Load(object sender, EventArgs e)
         {
             lsvStatus.Items.Clear();
-            logStatuses.ForEach(_ =>
+            logStatuses.ForEach(_ => { lsvStatus.Items.Add(ItemViewFormat(_)); });
+        }
+
+        // Custom format:
+        private ListViewItem ItemViewFormat(LogStatus logStatus)
+        {
+            var item = new ListViewItem(logStatus.CurrentTime.ToString() + " - " + logStatus.Message);
+            switch (logStatus.MsgStatus)
             {
-                var item = new ListViewItem(_.CurrentTime.ToString("dd/MM/yyyy HH:mm:ss") + " - " + _.Message);
-                lsvStatus.Items.Add(item);
-                if (_.MsgStatus == MessageStatus.Fail)
-                    item.ForeColor = Color.Red;
-                if (_.MsgStatus == MessageStatus.OK)
+                case MessageStatus.OK:
                     item.ForeColor = Color.Green;
-                if (_.MsgStatus == MessageStatus.Warning)
+                    return item;
+                case MessageStatus.Fail:
+                    item.ForeColor = Color.Red;
+                    return item;
+                case MessageStatus.Warning:
                     item.ForeColor = Color.Orange;
-            });
+                    return item;
+                default:
+                    return item;
+            }
+        }
+
+        private void lsvStatus_Resize(object sender, EventArgs e)
+        {
+            int width = lsvStatus.Width - 10;
+            lsvStatus.Columns[0].Width = width;
         }
     }
 }

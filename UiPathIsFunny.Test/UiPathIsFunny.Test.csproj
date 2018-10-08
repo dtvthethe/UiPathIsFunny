@@ -55,6 +55,16 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UiPathIsFunny.Business\UiPathIsFunny.Business.csproj">
+      <Project>{0175075A-4116-4EC1-916F-D4C516F3ADDA}</Project>
+      <Name>UiPathIsFunny.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UiPathIsFunny.Model\UiPathIsFunny.Model.csproj">
+      <Project>{4D7B5AA3-5666-45B3-9D46-F6C5F07C4F09}</Project>
+      <Name>UiPathIsFunny.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

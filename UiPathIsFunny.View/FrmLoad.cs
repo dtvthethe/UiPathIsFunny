@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using UiPathIsFunny.Business;
 using UiPathIsFunny.Model;
@@ -18,56 +20,49 @@ namespace UiPathIsFunny.View
         private List<Config> configs;
         private ExportType exportType;
 
-        public List<LogStatus> LogStatuses;
-
-
-        public List<ActivityReport> activityReports;
+        public List<LogStatus> LogStatuses { get; set; }
+        public List<ActivityReport> ActivityReports { get; set; }
 
         public FrmLoad(string exportPath, string[] files, List<Config> configs, bool detailMode, ExportType exportType)
         {
             InitializeComponent();
+
             this.exportPath = exportPath;
             this.files = files;
             this.configs = configs;
             this.detailMode = detailMode;
             this.exportType = exportType;
+
             LogStatuses = new List<LogStatus>();
-            activityReports = new List<ActivityReport>();
+            ActivityReports = new List<ActivityReport>();
+        }
+
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+
+            Task.Factory.StartNew
+            (
+             () =>
+             {
+                 Thread.Sleep(2000);
+                 Invoke(new Action(AfterLoading));
+             }
+            );
+        }
+
+        private void AfterLoading()
+        {
+
+            var aMLFileBusiness = new XAMLFileBusiness();
+            bool isError = false;
             LogStatuses.Add(new LogStatus
             {
                 CurrentTime = DateTime.Now,
-                Message = "XAML files processed.",
+                Message = "Export START!",
                 MsgStatus = MessageStatus.None
             });
-        }
-
-        private List<Activity> CreateListActivity(List<Config> configs)
-        {
-            var acti = new List<Activity>();
-            configs.ForEach(_ =>
-            {
-                acti.Add(new Activity
-                {
-                    Count = 0,
-                    Keyword = _.Keyword,
-                    Name = _.Name,
-                    Problem = ""
-                });
-            });
-            return acti;
-        }
-
-        private void FrmLoad_Load(object sender, EventArgs e)
-        {
-            this.Activated += AfterLoading;
-        }
-
-        private void AfterLoading(object sender, EventArgs e)
-        {
-            this.Activated -= AfterLoading;
-            XAMLFileBusiness aMLFileBusiness = new XAMLFileBusiness();
-
-            bool isError = false;
 
             // Count by keyword:
             for (int i = 0; i < files.Count(); i++)
@@ -75,7 +70,7 @@ namespace UiPathIsFunny.View
                 try
                 {
                     var lstCount = aMLFileBusiness.CountActicities(files[i], CreateListActivity(configs));
-                    activityReports.Add(new ActivityReport
+                    ActivityReports.Add(new ActivityReport
                     {
                         FileName = files[i],
                         Activities = lstCount.ToList()
@@ -92,7 +87,7 @@ namespace UiPathIsFunny.View
                     LogStatuses.Add(new LogStatus
                     {
                         CurrentTime = DateTime.Now,
-                        Message = files[i] + " -> Error: " + Environment.NewLine + ex.Message,
+                        Message = files[i] + " -> Error: " + ex.Message,
                         MsgStatus = MessageStatus.Fail
                     });
                     isError = true;
@@ -100,26 +95,27 @@ namespace UiPathIsFunny.View
 
             }
 
-            if (!isError)
+            // Export to file:
+            try
             {
-                try
+                if (!isError)
                 {
-                    var listSummary = aMLFileBusiness.CountSummatyActicities(activityReports);
+                    var listSummary = aMLFileBusiness.CountSummatyActicities(ActivityReports);
                     switch (exportType)
                     {
                         case ExportType.JSON:
                             if (detailMode)
-                                Export.ToJSON(activityReports, exportPath);
+                                Export.ToJSON(ActivityReports, exportPath);
                             Export.ToJSONSummary(listSummary.ToList(), exportPath);
                             break;
                         case ExportType.CSV:
                             if (detailMode)
-                                Export.ToCSV(activityReports, exportPath);
+                                Export.ToCSV(ActivityReports, exportPath);
                             Export.ToCSVSummary(listSummary.ToList(), exportPath);
                             break;
                         case ExportType.EXCEL:
                             if (detailMode)
-                                Export.ToExcel(activityReports, exportPath);
+                                Export.ToExcel(ActivityReports, exportPath);
                             Export.ToExcelSummary(listSummary.ToList(), exportPath);
                             break;
                         default:
@@ -130,34 +126,52 @@ namespace UiPathIsFunny.View
                     {
                         CurrentTime = DateTime.Now,
                         Message = "Export successfully! -> " + exportPath,
-                        MsgStatus = MessageStatus.OK
-                    });
-                    //isError = true;
-                }
-                catch (Exception ex)
-                {
-                    LogStatuses.Add(new LogStatus
-                    {
-                        CurrentTime = DateTime.Now,
-                        Message = "Export faild: " + ex.Message,
-                        MsgStatus = MessageStatus.Fail
+                        MsgStatus = MessageStatus.None
                     });
                 }
+                else
+                    throw new Exception("Can't export to file! Error occurred when process XAML file.");
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Error occurred when process XAML file. See the error in log.");
+                LogStatuses.Add(new LogStatus
+                {
+                    CurrentTime = DateTime.Now,
+                    Message = "Export faild: " + ex.Message,
+                    MsgStatus = MessageStatus.Fail
+                });
+            }
+            finally
+            {
+                LogStatuses.Add(new LogStatus
+                {
+                    CurrentTime = DateTime.Now,
+                    Message = "Export END!",
+                    MsgStatus = MessageStatus.None
+                });
             }
 
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        // Methods:
+        private List<Activity> CreateListActivity(List<Config> configs)
         {
-            this.Close();
-        }
+            var activity = new List<Activity>();
+            configs.ForEach(_ =>
+            {
+                activity.Add(new Activity
+                {
+                    Count = 0,
+                    Keyword = _.Keyword,
+                    Name = _.Name,
+                    Problem = ""
+                });
+            });
 
+            return activity;
+        }
 
     }
 }
