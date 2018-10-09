@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label9 = new System.Windows.Forms.Label();
             this.btnLog = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -51,6 +53,15 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.lsvConfig = new System.Windows.Forms.ListView();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.linkLatestVersion = new System.Windows.Forms.LinkLabel();
+            this.linkGithub = new System.Windows.Forms.LinkLabel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.tabPage2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -58,10 +69,12 @@
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.label9);
             this.tabPage2.Controls.Add(this.btnLog);
             this.tabPage2.Controls.Add(this.groupBox3);
             this.tabPage2.Controls.Add(this.groupBox4);
@@ -75,9 +88,20 @@
             this.tabPage2.Text = "Make it Funny";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // label9
+            // 
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(133)))), ((int)(((byte)(202)))));
+            this.label9.Location = new System.Drawing.Point(77, 56);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(288, 18);
+            this.label9.TabIndex = 37;
+            this.label9.Text = "CLick \"Start\" to count number of activities";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // btnLog
             // 
-            this.btnLog.Location = new System.Drawing.Point(3, 56);
+            this.btnLog.Location = new System.Drawing.Point(3, 54);
             this.btnLog.Name = "btnLog";
             this.btnLog.Size = new System.Drawing.Size(27, 23);
             this.btnLog.TabIndex = 38;
@@ -168,9 +192,9 @@
             // 
             this.lsvStatus.FullRowSelect = true;
             this.lsvStatus.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lsvStatus.Location = new System.Drawing.Point(3, 85);
+            this.lsvStatus.Location = new System.Drawing.Point(0, 85);
             this.lsvStatus.Name = "lsvStatus";
-            this.lsvStatus.Size = new System.Drawing.Size(605, 146);
+            this.lsvStatus.Size = new System.Drawing.Size(610, 146);
             this.lsvStatus.TabIndex = 31;
             this.lsvStatus.UseCompatibleStateImageBehavior = false;
             this.lsvStatus.View = System.Windows.Forms.View.Details;
@@ -178,8 +202,8 @@
             // btnStart
             // 
             this.btnStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStart.ForeColor = System.Drawing.Color.Red;
-            this.btnStart.Location = new System.Drawing.Point(371, 56);
+            this.btnStart.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(133)))), ((int)(((byte)(202)))));
+            this.btnStart.Location = new System.Drawing.Point(371, 54);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(239, 23);
             this.btnStart.TabIndex = 35;
@@ -244,23 +268,23 @@
             // 
             // btnSave
             // 
-            this.btnSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(133)))), ((int)(((byte)(202)))));
             this.btnSave.Location = new System.Drawing.Point(157, 19);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 27;
-            this.btnSave.Text = "Save Config";
+            this.btnSave.Text = "&Save Config";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnEdit
             // 
-            this.btnEdit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnEdit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(133)))), ((int)(((byte)(202)))));
             this.btnEdit.Location = new System.Drawing.Point(47, 19);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(34, 23);
             this.btnEdit.TabIndex = 25;
-            this.btnEdit.Text = "Edit";
+            this.btnEdit.Text = "&Edit";
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
@@ -271,18 +295,18 @@
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(65, 23);
             this.btnRemove.TabIndex = 23;
-            this.btnRemove.Text = "Remove";
+            this.btnRemove.Text = "&Remove";
             this.btnRemove.UseVisualStyleBackColor = true;
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
             // btnAdd
             // 
-            this.btnAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(133)))), ((int)(((byte)(202)))));
             this.btnAdd.Location = new System.Drawing.Point(6, 19);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(34, 23);
             this.btnAdd.TabIndex = 22;
-            this.btnAdd.Text = "Add";
+            this.btnAdd.Text = "&Add";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
@@ -290,10 +314,10 @@
             // 
             this.lsvConfig.FullRowSelect = true;
             this.lsvConfig.GridLines = true;
-            this.lsvConfig.Location = new System.Drawing.Point(3, 68);
+            this.lsvConfig.Location = new System.Drawing.Point(0, 56);
             this.lsvConfig.MultiSelect = false;
             this.lsvConfig.Name = "lsvConfig";
-            this.lsvConfig.Size = new System.Drawing.Size(603, 162);
+            this.lsvConfig.Size = new System.Drawing.Size(610, 174);
             this.lsvConfig.TabIndex = 24;
             this.lsvConfig.UseCompatibleStateImageBehavior = false;
             this.lsvConfig.View = System.Windows.Forms.View.Details;
@@ -301,13 +325,111 @@
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(618, 260);
             this.tabControl1.TabIndex = 0;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.label8);
+            this.tabPage3.Controls.Add(this.label7);
+            this.tabPage3.Controls.Add(this.linkLatestVersion);
+            this.tabPage3.Controls.Add(this.linkGithub);
+            this.tabPage3.Controls.Add(this.label5);
+            this.tabPage3.Controls.Add(this.label4);
+            this.tabPage3.Controls.Add(this.label3);
+            this.tabPage3.Controls.Add(this.label2);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(610, 234);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "About";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // label8
+            // 
+            this.label8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(133)))), ((int)(((byte)(202)))));
+            this.label8.Location = new System.Drawing.Point(3, 220);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(604, 2);
+            this.label8.TabIndex = 7;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(216, 77);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(357, 13);
+            this.label7.TabIndex = 6;
+            this.label7.Text = "(Yup! You\'re welcome, Help me to improve this app better! Thanks a lot :3)";
+            // 
+            // linkLatestVersion
+            // 
+            this.linkLatestVersion.AutoSize = true;
+            this.linkLatestVersion.Location = new System.Drawing.Point(146, 112);
+            this.linkLatestVersion.Name = "linkLatestVersion";
+            this.linkLatestVersion.Size = new System.Drawing.Size(107, 13);
+            this.linkLatestVersion.TabIndex = 5;
+            this.linkLatestVersion.TabStop = true;
+            this.linkLatestVersion.Text = "Explore latest version";
+            this.linkLatestVersion.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLatestVersion_LinkClicked);
+            // 
+            // linkGithub
+            // 
+            this.linkGithub.AutoSize = true;
+            this.linkGithub.Location = new System.Drawing.Point(146, 77);
+            this.linkGithub.Name = "linkGithub";
+            this.linkGithub.Size = new System.Drawing.Size(64, 13);
+            this.linkGithub.TabIndex = 4;
+            this.linkGithub.TabStop = true;
+            this.linkGithub.Text = "From Github";
+            this.linkGithub.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkGithub_LinkClicked);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(8, 112);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(132, 13);
+            this.label5.TabIndex = 3;
+            this.label5.Text = "Download newest version:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(8, 77);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(72, 13);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "Source Code:";
+            // 
+            // label3
+            // 
+            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(133)))), ((int)(((byte)(202)))));
+            this.label3.Location = new System.Drawing.Point(3, 48);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(604, 2);
+            this.label3.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(133)))), ((int)(((byte)(202)))));
+            this.label2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label2.Location = new System.Drawing.Point(3, 3);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(604, 43);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "UiPath is Funny";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FrmMain
             // 
@@ -317,6 +439,7 @@
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             this.ClientSize = new System.Drawing.Size(616, 259);
             this.Controls.Add(this.tabControl1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "FrmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -331,6 +454,8 @@
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -360,6 +485,16 @@
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.ListView lsvConfig;
         private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.LinkLabel linkLatestVersion;
+        private System.Windows.Forms.LinkLabel linkGithub;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
     }
 }
 

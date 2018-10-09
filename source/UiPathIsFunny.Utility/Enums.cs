@@ -2,7 +2,8 @@
 {
     public static class Enums
     {
-        public enum MessageStatus {
+        public enum MessageStatus
+        {
             OK,
             Fail,
             None,

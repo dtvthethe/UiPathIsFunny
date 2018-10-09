@@ -27,7 +27,7 @@ namespace UiPathIsFunny.View
             lstConfig = new List<Config>();
             configBusiness = new ConfigBusiness();
 
-            lsvConfig.Columns.Add("Name", (lsvConfig.Width / 2) - 5);
+            lsvConfig.Columns.Add("Name", (lsvConfig.Width / 2) - 21);
             lsvConfig.Columns.Add("Keyword", (lsvConfig.Width / 2));
             lsvStatus.Columns.Add("", lsvStatus.Width - 10);
 
@@ -139,12 +139,14 @@ namespace UiPathIsFunny.View
                     {
                         string pathFile = Path.Combine(folderDlg.SelectedPath.Trim(), "UiPath_Is_Funny_Config_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".config");
                         txtConfigTag.Text = pathFile;
-                        configBusiness.SaveAll(lstConfig, pathFile);
                     }
                 }
-                else
+
+                if (!String.IsNullOrEmpty(txtConfigTag.Text.Trim()))
+                {
                     configBusiness.SaveAll(lstConfig, txtConfigTag.Text.Trim());
-                MessageBox.Show("Save to config file successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Save to config file successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             catch (Exception ex)
             {
@@ -183,8 +185,6 @@ namespace UiPathIsFunny.View
                 lsvStatus.Items.Clear();
 
                 logStatuses.ForEach(_ => { lsvStatus.Items.Add(ItemViewFormat(_)); });
-                filesProcess = null;
-                txtXAMpath.Text = "";
                 MessageBox.Show("Export successfully!\nYour export file path:\n" + folderDlg.SelectedPath.Trim(), "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -320,5 +320,14 @@ namespace UiPathIsFunny.View
             return lstStAppend;
         }
 
+        private void linkGithub_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/dtvthethe/UiPathIsFunny/tree/master/source");
+        }
+
+        private void linkLatestVersion_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/dtvthethe/UiPathIsFunny/tree/master/version");
+        }
     }
 }

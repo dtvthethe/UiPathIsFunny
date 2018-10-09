@@ -52,6 +52,8 @@
             this.Controls.Add(this.lsvStatus);
             this.MinimizeBox = false;
             this.Name = "FrmLog";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Logs";
             this.Load += new System.EventHandler(this.FrmLog_Load);

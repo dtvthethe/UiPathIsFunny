@@ -122,10 +122,10 @@ namespace UiPathIsFunny.Utility
                 var ws = wb.Worksheets.Add(WorkSheetName(Path.GetFileNameWithoutExtension(_.FileName)));
                 // Title:
                 var title = ws.Cell(1, 1);
-                title.Value = "UiPath Count Activity";
+                title.Value = "UiPath is Funny";
                 title.Style.Font.Bold = true;
                 title.Style.Font.FontColor = XLColor.White;
-                title.Style.Fill.BackgroundColor = XLColor.FromArgb(37, 115, 177);
+                title.Style.Fill.BackgroundColor = XLColor.FromArgb(0, 133, 202);
 
                 ws.Range(1, 1, 1, 4).Merge().AddToNamed("Title");
                 // Columns:
@@ -178,10 +178,10 @@ namespace UiPathIsFunny.Utility
             var ws = wb.Worksheets.Add("Summary");
             // Title:
             var title = ws.Cell(1, 1);
-            title.Value = "UiPath Count Activity";
+            title.Value = "UiPath is Funny";
             title.Style.Font.Bold = true;
             title.Style.Font.FontColor = XLColor.White;
-            title.Style.Fill.BackgroundColor = XLColor.FromArgb(37, 115, 177);
+            title.Style.Fill.BackgroundColor = XLColor.FromArgb(0, 133, 202);
 
             ws.Range(1, 1, 1, 4).Merge().AddToNamed("Title");
             // Columns:
@@ -233,4 +233,5 @@ namespace UiPathIsFunny.Utility
         }
 
     }
+
 }
