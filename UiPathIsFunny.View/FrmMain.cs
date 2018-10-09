@@ -322,7 +322,7 @@ namespace UiPathIsFunny.View
 
         private void linkGithub_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://github.com/dtvthethe/UiPathIsFunny/tree/master/source");
+            System.Diagnostics.Process.Start("https://github.com/dtvthethe/UiPathIsFunny");
         }
 
         private void linkLatestVersion_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
