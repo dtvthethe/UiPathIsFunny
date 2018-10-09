@@ -1,6 +1,6 @@
 # UiPath is Funny!
 
-Count number of activities UiPath Project
+Count number of activities in UiPath Project
 
 ## Getting Started
 
