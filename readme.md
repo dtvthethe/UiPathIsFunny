@@ -23,7 +23,7 @@ Windows system:
 Date  | Version  | Name file .zip
 ------------- | -------------  | -------------
 2018-Oct-06  | Beta   | UiPathIsFunny_Beta.zip
-2018-Oct-09  | Version 1.0   | UiPathIsFunny_v1.0.zip
+2018-Oct-09  | Version 1.0   | UiPathIsFunny_v1.0.zip (Newest)
 
 See more version [here](https://github.com/dtvthethe/UiPathIsFunny/tree/master/version).
 
