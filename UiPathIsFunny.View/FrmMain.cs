@@ -327,7 +327,7 @@ namespace UiPathIsFunny.View
 
         private void linkLatestVersion_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://github.com/dtvthethe/UiPathIsFunny/tree/master/version");
+            System.Diagnostics.Process.Start("https://github.com/dtvthethe/UiPathIsFunny/releases");
         }
     }
 }
