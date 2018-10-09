@@ -27,7 +27,10 @@ Date  | Version  | Name file .zip
 
 See more version [here](https://github.com/dtvthethe/UiPathIsFunny/releases).
 
+## License
+Alright license this project is open source, Free :+1::+1::+1::+1::+1::+1:
+
 ## Authors
 
-:heart_eyes: Yup! You're welcome, Help me to improve this app better! :+1: Thanks a lot :3 :heart_eyes::heart_eyes::heart_eyes::heart_eyes::heart_eyes:
+:heart_eyes: Yup! You're welcome, :bulb::bulb:Help me to improve this app better! :+1: Thanks a lot :3 :heart_eyes::heart_eyes::heart_eyes::heart_eyes::heart_eyes:
 * **Dam Harry** - *Initial work* - [Profile](https://github.com/dtvthethe)
